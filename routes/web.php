@@ -19,5 +19,16 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('lists', 'lists')
+    ->middleware(['auth', 'verified'])
+    ->name('lists');
+
+Route::view('list/{id}', 'list')
+    ->middleware(['auth', 'verified'])
+    ->name('list');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
 
 require __DIR__.'/auth.php';
