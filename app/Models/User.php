@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'user_subscribers','subscriber_id', 'user_id');
     }
 
+    public function getSubscribedIdsAttribute(): array
+    {
+        return $this->subscribed()->pluck('user_id')->toArray();
+    }
+
     public function subscribers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_subscribers', 'user_id','subscriber_id', );
