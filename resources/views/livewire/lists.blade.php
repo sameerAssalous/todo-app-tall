@@ -12,7 +12,7 @@
                 <div class="flex justify-between space-x-2">
 
                     <div class="flex items-center">
-                        <h3  class="text-lg text-semibold text-gray-800"> <a wire:navigate href="{{route('list',['id' => $list->id])}}">{{ $list->name }} <span >({{ $list->todos_count }} todos )</span></a></h3>
+                        <h3  class="text-lg text-semibold text-gray-800"> <a wire:navigate href="{{route('list',['id' => $list->id])}}">{{ $list->name }} <span >({{ $list->todos_count }} {{__('messages.todos')}} )</span></a></h3>
                     </div>
 
                     <div class="flex items-center space-x-2">

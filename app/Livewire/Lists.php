@@ -22,7 +22,7 @@ class Lists extends Component
 
     public function render()
     {
-        $this->subscribedIds = auth()->user()->subscribedIds;
+        $this->subscribedIds = auth()->user()->subscribedIds ?? [];
         return view('livewire.lists', [
             'lists' => User::withCount('todos')
             ->whereNot('id', auth()->user()->id)

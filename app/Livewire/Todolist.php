@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
