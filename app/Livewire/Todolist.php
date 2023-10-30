@@ -39,6 +39,9 @@ class Todolist extends Component
 
     public function deleteTodo(Todo $todo)
     {
+        if (request()->user()->cannot('edit', $todo)) {
+            abort(403);
+        }
         $todo->delete();
     }
 
@@ -63,6 +66,9 @@ class Todolist extends Component
     }
     public function updateTodo(Todo $todo)
     {
+        if (request()->user()->cannot('update', $todo)) {
+            abort(403);
+        }
         $this->validateOnly('editedContent');
         $this->updateTodoHandler->handle(
             new UpdateTodoCommand(
@@ -75,6 +81,7 @@ class Todolist extends Component
 
     public function addTodo()
     {
+
         $this->validateOnly('content');
         $this->createTodoHandler->handle(
             new CreateTodoCommand(
