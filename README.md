@@ -15,7 +15,7 @@ update `.env` file with mail driver configs and redis config to be connection qu
 
 `php artisan queue:work --tries=3`  to start queue working
 
-Inorder to parse huge numbers of email queued notifications 
+- Inorder to parse huge numbers of email queued notifications 
 you should install `supervisor` and update its configurations to run multiple workers .
 `sudo apt-get install supervisor`
 
@@ -33,7 +33,8 @@ redirect_stderr=true
 stdout_logfile=/home/forge/app.com/worker.log
 stopwaitsecs=3600`
 
+- `numprocs=8` will create 8 workers , you might need to decrease/increase depend on load you might have and max time of every job
 
-You might need to use autoscaling service like AWS autoscaling group service to deal with queues load on memory or CPU 
+- You might need to use autoscaling service like AWS autoscaling group service to deal with queues load on memory or CPU 
 
 
