@@ -1,5 +1,7 @@
 
 ## Todo App TALL Stack
+video show
+https://www.loom.com/share/4073ba0e0a1f4e349f6a318d37a79af8
 
 ## How to run the app 
 `./vendor/bin/sail up` to create docker containers
@@ -30,6 +32,7 @@ numprocs=8
 redirect_stderr=true
 stdout_logfile=/home/forge/app.com/worker.log
 stopwaitsecs=3600`
+
 
 You might need to use autoscaling service like AWS autoscaling group service to deal with queues load on memory or CPU 
 
