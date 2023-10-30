@@ -1,4 +1,4 @@
-<div x-data="{ open: false }" class="mx-auto">
+<div x-data="{ open: true }" class="mx-auto">
     <div  x-show="!open" class="hover:shadow p-6 bg-white border-blue-500 border-t-2">
         <div class="flex items-center ">
             <button type="button" @click="open = ! open"
