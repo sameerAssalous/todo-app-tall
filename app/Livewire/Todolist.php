@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\App;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Module\Todo\Commands\CreateTodoCommand;
+use Module\Todo\Commands\CreateTodoHandler;
+use Module\Todo\Commands\UpdateTodoCommand;
+use Module\Todo\Commands\UpdateTodoHandler;
 use Module\Todo\Models\Todo;
 
 class Todolist extends Component
@@ -25,6 +29,13 @@ class Todolist extends Component
     public $editedContent;
     public $editedTodoId = null;
 
+    public function boot(
+        CreateTodoHandler $createTodoHandler,
+        UpdateTodoHandler $updateTodoHandler,
+    ){
+        $this->createTodoHandler = $createTodoHandler;
+        $this->updateTodoHandler = $updateTodoHandler;
+    }
 
     public function deleteTodo(Todo $todo)
     {
@@ -53,18 +64,24 @@ class Todolist extends Component
     public function updateTodo(Todo $todo)
     {
         $this->validateOnly('editedContent');
-        $todo->content = $this->editedContent;
-        $todo->save();
+        $this->updateTodoHandler->handle(
+            new UpdateTodoCommand(
+                $todo->id,
+                $this->editedContent
+            )
+        );
         $this->cancelEdit();
     }
 
     public function addTodo()
     {
         $this->validateOnly('content');
-        $todo = new Todo();
-        $todo->user_id = auth()->user()->id;
-        $todo->content = $this->content;
-        $todo->save();
+        $this->createTodoHandler->handle(
+            new CreateTodoCommand(
+                auth()->user()->id,
+                $this->content
+            )
+        );
         $this->reset('content');
         session()->flash('success', 'Saved');
     }
